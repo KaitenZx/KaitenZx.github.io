@@ -335,7 +335,6 @@ body {
     }
 
     @include respond-to(medium) {
-      gap: 22px;
       width: 400px;
       min-width: 400px;
       height: 220px;
@@ -367,7 +366,7 @@ body {
     @include respond-to(medium) {
       font-size: 48px;
       line-height: 100%;
-      width: 90%;
+      font-size: min(11vw, 48px);
     }
   }
 
@@ -393,6 +392,7 @@ body {
       height: 26px;
       font-size: 22px;
       line-height: 26.4px;
+      font-size: min(5vw, 22px);
     }
   }
 
@@ -457,12 +457,6 @@ body {
   flex-direction: column;
   width: 90%;
 
-  @include respond-to(small) {
-    width: 320px;
-    height: 1542px;
-  }
-
-  @include respond-to(medium) {}
 
   &__header {
     display: flex;
@@ -680,16 +674,6 @@ body {
   display: flex;
   flex-direction: column;
   width: 90%;
-
-  @include respond-to(small) {
-    width: 318px;
-    height: 300px;
-  }
-
-  @include respond-to(medium) {
-    width: 709px;
-    height: 214px;
-  }
 
   &__header {
     font-weight: 800;
