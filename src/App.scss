@@ -275,9 +275,9 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: black; // Use the inherited background
-    z-index: 1; // Place behind the content
-    opacity: 0.2; // Control the overlay opacity
+    background: black;
+    z-index: 1;
+    opacity: 0.2;
   }
 
   @include respond-to(small) {
@@ -411,6 +411,8 @@ body {
     height: 367px;
     width: 339px;
     flex: 0 0 339px;
+    min-height: 367px;
+    min-width: 339px;
 
 
     @include respond-to(small) {
@@ -501,9 +503,9 @@ body {
       left: 0;
       right: 0;
       bottom: 0;
-      background: black; // Use the inherited background
-      z-index: 1; // Place behind the content
-      opacity: 0.4; // Control the overlay opacity
+      background: black;
+      z-index: 1;
+      opacity: 0.4;
     }
 
     &--1 {
