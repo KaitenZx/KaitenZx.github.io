@@ -7,13 +7,13 @@ $font-family: 'Lato', sans-serif;
 @mixin respond-to($breakpoints...) {
   @each $breakpoint in $breakpoints {
     @if $breakpoint ==small {
-      @media (max-width: 400px) {
+      @media (max-width: 360px) {
         @content;
       }
     }
 
     @else if $breakpoint ==medium {
-      @media (min-width: 401px) and (max-width: 768px) {
+      @media (min-width: 361px) and (max-width: 768px) {
         @content;
       }
     }
@@ -79,13 +79,16 @@ body {
     @include respond-to(medium) {
       width: 104px;
       height: 36px;
-      margin-left: 21px;
+      margin-left: 5%;
+      position: absolute;
+      left: 0;
+
     }
 
     @include respond-to(small) {
       width: 71px;
       height: 24px;
-      margin-left: 30px;
+      margin-left: 5%;
     }
   }
 
@@ -192,7 +195,6 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 250px;
     margin-right: 91px;
 
     @include respond-to(small) {
@@ -200,7 +202,11 @@ body {
     }
 
     @include respond-to(medium) {
-      margin-right: 50px;
+      margin-right: 5%;
+      justify-content: flex-end;
+      position: absolute;
+      right: 0;
+      gap: 20%;
     }
 
     &__item {
@@ -265,7 +271,7 @@ body {
   justify-content: space-between;
   width: 100%;
   height: 555px;
-  padding: 0 80px;
+  padding: 0 5%;
   margin-top: 15px;
 
   &:before {
@@ -291,7 +297,7 @@ body {
     width: 841.15px;
     height: 500px;
     align-self: flex-start;
-    padding: 0 0 0 30px;
+    padding: 0 5%;
   }
 
   &__content {
@@ -300,8 +306,7 @@ body {
     flex-direction: column;
     align-items: flex-start;
     gap: 22px;
-    width: 693px;
-    height: 280px;
+    width: 600px;
 
     @include respond-to(small) {
       gap: 17px;
@@ -313,7 +318,7 @@ body {
 
     @include respond-to(medium) {
       gap: 22px;
-      width: 411px;
+      width: 400px;
       height: 220px;
     }
   }
@@ -323,7 +328,6 @@ body {
     font-weight: 800;
     font-size: 72px;
     line-height: 100%;
-    width: 693px;
 
     &>span {
       color: $pink;
@@ -340,7 +344,7 @@ body {
     @include respond-to(medium) {
       font-size: 48px;
       line-height: 100%;
-      width: 440px;
+      width: 400px;
     }
   }
 
@@ -349,7 +353,6 @@ body {
     font-size: 32px;
     line-height: 120%;
     color: $white;
-    width: 580px;
 
     &>span {
       color: $yellow;
@@ -436,10 +439,7 @@ body {
     height: 1542px;
   }
 
-  @include respond-to(medium) {
-    width: 709px;
-    height: 789px;
-  }
+  @include respond-to(medium) {}
 
   &__header {
     display: flex;
@@ -492,7 +492,7 @@ body {
     flex-direction: column;
     gap: 22px;
     height: 350px;
-    padding: 35px;
+    padding: 10%;
 
     &:before {
       content: "";
@@ -534,7 +534,7 @@ body {
 
     &--1 &__title,
     &--4 &__title {
-      width: 635px;
+      max-width: 635px;
 
       @include respond-to(small) {
         width: 265px;
