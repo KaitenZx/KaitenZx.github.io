@@ -408,8 +408,10 @@ body {
     display: flex;
     background: url('../public/images/earth.png') no-repeat center center;
     background-size: contain;
-    width: 339px;
     height: 367px;
+    width: 339px;
+    min-width: 339px;
+    min-height: 367px;
 
 
     @include respond-to(small) {
