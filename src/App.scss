@@ -72,17 +72,25 @@ body {
     color: $pink;
     background-size: contain;
     margin-right: auto;
-    width: 71px;
-    height: 24px;
+    width: 104px;
+    height: 36px;
     margin-left: 81px;
 
     @include respond-to(medium) {
+      width: 71px;
+      height: 24px;
       width: 104px;
       height: 36px;
       margin-left: 5%;
       position: absolute;
       left: 0;
+    }
 
+    @include respond-to(large) {
+      position: absolute;
+      left: 0;
+      margin-right: unset;
+      margin-left: 5%;
     }
 
     @include respond-to(small) {
@@ -196,6 +204,7 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-right: 91px;
+    gap: 20%;
 
     @include respond-to(small) {
       display: none;
@@ -207,6 +216,15 @@ body {
       position: absolute;
       right: 0;
       gap: 20%;
+    }
+
+    @include respond-to(large) {
+      position: absolute;
+      right: 0;
+      margin-right: unset;
+      gap: 20%;
+      margin-right: 5%;
+      justify-content: flex-end;
     }
 
     &__item {
@@ -319,7 +337,12 @@ body {
     @include respond-to(medium) {
       gap: 22px;
       width: 400px;
+      min-width: 400px;
       height: 220px;
+    }
+
+    @include respond-to(large) {
+      min-width: 600px;
     }
   }
 
@@ -344,7 +367,7 @@ body {
     @include respond-to(medium) {
       font-size: 48px;
       line-height: 100%;
-      width: 400px;
+      width: 90%;
     }
   }
 
@@ -492,7 +515,12 @@ body {
     flex-direction: column;
     gap: 22px;
     height: 350px;
-    padding: 10%;
+    padding: 30px;
+
+    @include respond-to(medium) {
+      padding: 10%;
+    }
+
 
     &:before {
       content: "";
@@ -541,7 +569,8 @@ body {
       }
 
       @include respond-to(medium) {
-        width: 265px;
+        width: 90%;
+        font-size: min(8vw, 40px);
       }
     }
 
@@ -557,9 +586,10 @@ body {
       }
 
       @include respond-to(medium) {
-        width: 240px;
+        width: 90%;
         font-size: 40px;
         line-height: 100%;
+        font-size: min(8vw, 40px);
       }
     }
 
@@ -571,7 +601,6 @@ body {
 
 
       @include respond-to(medium) {
-        font-size: 40px;
         line-height: 100%;
         width: 250px;
       }
@@ -617,10 +646,12 @@ body {
       cursor: pointer;
 
       @include respond-to(medium) {
-        width: 161px;
+        max-width: 161px;
         height: 33px;
+        min-height: 33px;
         font-size: 16px;
         line-height: 19.2px;
+        width: 100%;
       }
 
       @include respond-to(small) {
