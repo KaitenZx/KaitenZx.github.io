@@ -1,0 +1,748 @@
+$black: #000000;
+$yellow: #EBFF00;
+$pink: #FF70D9;
+$white: #ffffff;
+$font-family: 'Lato', sans-serif;
+
+@mixin respond-to($breakpoints...) {
+  @each $breakpoint in $breakpoints {
+    @if $breakpoint ==small {
+      @media (max-width: 400px) {
+        @content;
+      }
+    }
+
+    @else if $breakpoint ==medium {
+      @media (min-width: 401px) and (max-width: 768px) {
+        @content;
+      }
+    }
+
+    @else if $breakpoint ==large {
+      @media (min-width: 769px) and (max-width: 1248px) {
+        @content;
+      }
+    }
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $font-family;
+  color: $white;
+  background: linear-gradient(196.2deg, #0D1E48 0%, #304571 100%);
+  overflow-x: hidden;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 60px;
+  overflow-x: hidden;
+}
+
+
+.header {
+  display: flex;
+  background: $black;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 80px;
+  align-items: center;
+  justify-content: center;
+
+  @include respond-to(small) {
+    height: 48px;
+  }
+
+  &__logo {
+    display: flex;
+    z-index: 1001;
+    background: url('../public/images/logo.svg') no-repeat center center;
+    color: $pink;
+    background-size: contain;
+    margin-right: auto;
+    width: 71px;
+    height: 24px;
+    margin-left: 81px;
+
+    @include respond-to(medium) {
+      width: 104px;
+      height: 36px;
+      margin-left: 21px;
+    }
+
+    @include respond-to(small) {
+      width: 71px;
+      height: 24px;
+      margin-left: 30px;
+    }
+  }
+
+  &__checkbox {
+    display: none;
+  }
+
+  &__burger {
+    position: relative;
+    display: none;
+    margin-right: 20px;
+    min-height: 20.5px;
+    z-index: 1001;
+    transition: .3s ease;
+
+    &__bars {
+      display: block;
+      position: relative;
+      width: 22px;
+      height: 1.5px;
+      background-color: $white;
+      transition: .3s;
+
+      &:before,
+      &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: $white;
+        transition: .3s;
+      }
+
+      &:before {
+        transform: translate(0, -9px);
+      }
+
+      &:after {
+        transform: translate(0, 9px);
+      }
+    }
+
+    @include respond-to(small) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  &__menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: $black;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    z-index: 1000;
+
+    li {
+      width: 100%;
+      text-align: center;
+
+      a {
+        display: block;
+        padding: 15px 0;
+        color: $white;
+        text-decoration: none;
+        width: 100%;
+        transition: color 0.3s;
+      }
+    }
+
+    @include respond-to(small) {
+      display: none;
+    }
+  }
+
+  &__checkbox:checked~&__menu {
+    display: flex;
+  }
+
+  &__checkbox:checked+&__burger .header__burger__bars {
+    background-color: transparent;
+
+    &:before {
+      transform: rotate(45deg);
+      top: 0;
+    }
+
+    &:after {
+      transform: rotate(-45deg);
+      top: 0;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 250px;
+    margin-right: 91px;
+
+    @include respond-to(small) {
+      display: none;
+    }
+
+    @include respond-to(medium) {
+      margin-right: 50px;
+    }
+
+    &__item {
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 21.6px;
+      text-align: center;
+
+      &__cart {
+        display: flex;
+        background: url('../public/images/cart.svg') no-repeat center center;
+        background-size: contain;
+        width: 24px;
+        height: 20.77px;
+        transition: all 0.3s ease-in-out;
+        position: relative;
+
+        &:hover::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(140.47deg, rgba(235, 255, 0, 0.6) 26.02%, rgba(255, 112, 217, 0.6) 90.57%);
+          mix-blend-mode: multiply;
+          opacity: 0.7;
+          z-index: 1;
+        }
+
+
+
+        @include respond-to(medium) {
+          width: 24.04px;
+          height: 19.75px;
+        }
+      }
+
+      &__link {
+        color: $white;
+        text-decoration: none;
+        transition: color 0.3s;
+
+        &:hover {
+          color: transparent;
+          background: linear-gradient(98.25deg, #EBFF00 18.56%, #FF70D9 76.02%);
+          -webkit-background-clip: text;
+          background-clip: text;
+          transition: background 0.3s;
+        }
+      }
+    }
+  }
+}
+
+.banner {
+  background: url('../public/images/banner.jpeg') no-repeat center center;
+  background-size: cover;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 555px;
+  padding: 0 80px;
+  margin-top: 15px;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: black; // Use the inherited background
+    z-index: 1; // Place behind the content
+    opacity: 0.2; // Control the overlay opacity
+  }
+
+  @include respond-to(small) {
+    width: 360px;
+    height: 568px;
+    margin-top: -68px;
+    flex-direction: column-reverse;
+  }
+
+  @include respond-to(medium) {
+    width: 841.15px;
+    height: 500px;
+    align-self: flex-start;
+    padding: 0 0 0 30px;
+  }
+
+  &__content {
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 22px;
+    width: 693px;
+    height: 280px;
+
+    @include respond-to(small) {
+      gap: 17px;
+      width: 292px;
+      height: 158px;
+      align-items: center;
+      margin-bottom: 44px;
+    }
+
+    @include respond-to(medium) {
+      gap: 22px;
+      width: 411px;
+      height: 220px;
+    }
+  }
+
+  &__title {
+    color: $white;
+    font-weight: 800;
+    font-size: 72px;
+    line-height: 100%;
+    width: 693px;
+
+    &>span {
+      color: $pink;
+      font-weight: 900;
+    }
+
+    @include respond-to(small) {
+      font-size: 36px;
+      line-height: 100%;
+      width: 292px;
+      text-align: center;
+    }
+
+    @include respond-to(medium) {
+      font-size: 48px;
+      line-height: 100%;
+      width: 440px;
+    }
+  }
+
+  &__subtitle {
+    font-weight: 800;
+    font-size: 32px;
+    line-height: 120%;
+    color: $white;
+    width: 580px;
+
+    &>span {
+      color: $yellow;
+      font-weight: 900;
+    }
+
+    @include respond-to(small) {
+      font-size: 16px;
+      line-height: 19.2px;
+      text-align: center;
+      width: 255px;
+    }
+
+    @include respond-to(medium) {
+      height: 26px;
+      font-size: 22px;
+      line-height: 26.4px;
+    }
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 191px;
+    height: 54px;
+    background: $yellow;
+    color: $black;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 26px;
+
+    @include respond-to(small) {
+      width: 161px;
+      height: 33px;
+      font-size: 16px;
+      line-height: 19.2px;
+    }
+
+    &:hover {
+      background-color: #EBFF0099;
+    }
+  }
+
+  &__earth {
+    z-index: 2;
+    display: flex;
+    background: url('../public/images/earth.png') no-repeat center center;
+    background-size: contain;
+    width: 339px;
+    height: 367px;
+
+
+    @include respond-to(small) {
+      width: 310px;
+      height: 336px;
+    }
+
+    @include respond-to(medium) {
+      width: 299.5px;
+      height: 336px;
+    }
+  }
+}
+
+.offers {
+  display: flex;
+  flex-direction: column;
+  width: 1088px;
+  height: 1215px;
+
+  @include respond-to(small) {
+    width: 320px;
+    height: 1542px;
+  }
+
+  @include respond-to(medium) {
+    width: 709px;
+    height: 789px;
+  }
+
+  &__header {
+    display: flex;
+    font-weight: 800;
+    color: $white;
+    margin-bottom: 40px;
+    font-size: 32px;
+    line-height: 38.4px;
+
+    @include respond-to(small) {
+      font-size: 18px;
+      line-height: 21.6px;
+      margin-bottom: 30px;
+    }
+
+    @include respond-to(medium) {
+      font-size: 24px;
+      line-height: 28.8px;
+      margin-bottom: 30px;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    gap: 40px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    grid-auto-rows: minmax(100px, auto);
+
+    @include respond-to(medium) {
+      gap: 30px;
+    }
+
+    @include respond-to(small) {
+      grid-template-columns: repeat(1, 1fr);
+      gap: 30px;
+    }
+  }
+
+  &__item {
+    background-color: rgba(0, 0, 0, 0.7);
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    color: $white;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    gap: 22px;
+    height: 350px;
+    padding: 35px;
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: black; // Use the inherited background
+      z-index: 1; // Place behind the content
+      opacity: 0.4; // Control the overlay opacity
+    }
+
+    &--1 {
+      background-image: url('../public/images/offers1.jpeg');
+      grid-column: span 2;
+
+      @include respond-to(medium, small) {
+        grid-column: span 1;
+      }
+    }
+
+    &--2 {
+      background-image: url('../public/images/offers2.jpeg');
+    }
+
+    &--3 {
+      background-image: url('../public/images/offers3.jpeg');
+    }
+
+    &--4 {
+      grid-column: span 2;
+      background-image: url('../public/images/offers4.jpeg');
+
+      @include respond-to(medium, small) {
+        grid-column: span 1;
+      }
+    }
+
+    &--1 &__title,
+    &--4 &__title {
+      width: 635px;
+
+      @include respond-to(small) {
+        width: 265px;
+      }
+
+      @include respond-to(medium) {
+        width: 265px;
+      }
+    }
+
+    &--2 &__title,
+    &--3 &__title {
+      font-size: 46px;
+      width: 300px;
+
+      @include respond-to(small) {
+        font-size: 40px;
+        line-height: 100%;
+        width: 240px;
+      }
+
+      @include respond-to(medium) {
+        width: 240px;
+        font-size: 40px;
+        line-height: 100%;
+      }
+    }
+
+    &__title {
+      z-index: 2;
+      font-size: 74px;
+      line-height: 100%;
+      font-weight: 800;
+
+
+      @include respond-to(medium) {
+        font-size: 40px;
+        line-height: 100%;
+        width: 250px;
+      }
+
+      @include respond-to(small) {
+        font-size: 40px;
+        line-height: 100%;
+        width: 265px;
+      }
+    }
+
+    &__description {
+      z-index: 2;
+      font-size: 24px;
+      line-height: 28.8px;
+      font-weight: 800;
+
+      @include respond-to(small) {
+        font-size: 14px;
+      }
+
+      @include respond-to(medium) {
+        font-size: 16px;
+        line-height: 19.2px;
+      }
+    }
+
+    &__button {
+      background: none;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 192px;
+      height: 54px;
+      font-weight: 700;
+      font-size: 22px;
+      line-height: 26.4px;
+      border-radius: 100px;
+      border: 2px solid $yellow;
+      color: $yellow;
+      transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+      cursor: pointer;
+
+      @include respond-to(medium) {
+        width: 161px;
+        height: 33px;
+        font-size: 16px;
+        line-height: 19.2px;
+      }
+
+      @include respond-to(small) {
+        width: 161px;
+        height: 33px;
+        font-size: 16px;
+        line-height: 19.2px;
+      }
+
+      &:hover {
+        border-color: #EBFF0099;
+        color: #EBFF0099;
+      }
+    }
+  }
+
+
+}
+
+.info-text {
+  display: flex;
+  flex-direction: column;
+  width: 1087px;
+  height: 240px;
+
+  @include respond-to(small) {
+    width: 318px;
+    height: 300px;
+  }
+
+  @include respond-to(medium) {
+    width: 709px;
+    height: 214px;
+  }
+
+  &__header {
+    font-weight: 800;
+    font-size: 32px;
+    line-height: 38.4px;
+    margin-bottom: 17px;
+
+    @include respond-to(small) {
+      line-height: 21.6px;
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    @include respond-to(medium) {
+      line-height: 28.8px;
+      font-size: 24px;
+      margin-bottom: 13px;
+    }
+  }
+
+  &__content {
+    display: flex;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    opacity: 0.6;
+    margin-bottom: 20px;
+
+    @include respond-to(small) {
+      font-size: 14px;
+      line-height: 16.8px;
+    }
+
+    @include respond-to(medium) {
+      font-size: 16px;
+      line-height: 19.2px;
+    }
+  }
+
+  &__read-more {
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 24px;
+    color: $yellow;
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.3s;
+
+    &:hover {
+      color: #EBFF0099;
+    }
+
+    @include respond-to(small) {
+      font-size: 14px;
+      line-height: 16.8px;
+    }
+
+    @include respond-to(medium) {
+      font-size: 16px;
+      line-height: 19.2px;
+    }
+  }
+}
+
+.footer {
+  background-color: $black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 127px;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+  &__text {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 28px;
+    color: $yellow;
+  }
+
+  &__logo {
+    background-image: url('../public/images/rocket.svg');
+    background-size: cover;
+    background-position: center;
+    width: 51.85px;
+    height: 78.06px;
+  }
+}
