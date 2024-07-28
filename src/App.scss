@@ -430,8 +430,7 @@ body {
 .offers {
   display: flex;
   flex-direction: column;
-  width: 1088px;
-  height: 1215px;
+  width: 90%;
 
   @include respond-to(small) {
     width: 320px;
@@ -650,8 +649,7 @@ body {
 .info-text {
   display: flex;
   flex-direction: column;
-  width: 1087px;
-  height: 240px;
+  width: 90%;
 
   @include respond-to(small) {
     width: 318px;
