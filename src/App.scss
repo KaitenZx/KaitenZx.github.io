@@ -48,7 +48,6 @@ body {
   overflow-x: hidden;
 }
 
-
 .header {
   display: flex;
   background: $black;
@@ -421,11 +420,6 @@ body {
 
     &:hover {
       background-color: #EBFF0099;
-
-      @include respond-to(small) {
-        background-color: inherit;
-        color: inherit;
-      }
     }
   }
 
@@ -658,11 +652,6 @@ body {
       &:hover {
         border-color: #EBFF0099;
         color: #EBFF0099;
-
-        @include respond-to(small) {
-          background-color: inherit;
-          color: inherit;
-        }
       }
     }
   }
@@ -725,11 +714,6 @@ body {
 
     &:hover {
       color: #EBFF0099;
-
-      @include respond-to(small) {
-        background-color: inherit;
-        color: inherit;
-      }
     }
 
     @include respond-to(small) {
